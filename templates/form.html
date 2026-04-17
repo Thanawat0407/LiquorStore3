@@ -1,1 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Form</title>
+</head>
+<body>
 
+<h2>{{ "แก้ไขสินค้า" if liquor else "เพิ่มสินค้า" }}</h2>
+
+<form method="post">
+    <input name="name" placeholder="ชื่อ" value="{{liquor[1] if liquor else ''}}" required><br>
+
+    <input name="price" placeholder="ราคา" value="{{liquor[2] if liquor else ''}}" required><br>
+
+    <input name="image" placeholder="URL รูป" value="{{liquor[3] if liquor else ''}}" required><br>
+
+    <input name="stock" placeholder="สต็อก" value="{{liquor[4] if liquor else ''}}" required><br>
+
+    <input name="alcohol" placeholder="% แอลกอฮอล์" value="{{liquor[6] if liquor else ''}}" required><br>
+
+    <input name="volume" placeholder="ปริมาณ ml" value="{{liquor[7] if liquor else ''}}" required><br>
+
+    <select name="category">
+        {% for c in categories %}
+        <option value="{{c[0]}}"
+            {% if liquor and liquor[5] == c[0] %}selected{% endif %}>
+            {{c[1]}}
+        </option>
+        {% endfor %}
+    </select>
+
+    <br><br>
+    <button type="submit">บันทึก</button>
+</form>
+
+</body>
+</html>

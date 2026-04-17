@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Liquor Store</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: serif;
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            color: white;
+        }
+
+        header {
+            padding: 20px;
+            text-align: center;
+            font-size: 28px;
+            background: rgba(0,0,0,0.5);
+            backdrop-filter: blur(10px);
+        }
+
+        .container {
+            padding: 20px;
+        }
+
+        .btn-add {
+            background: #D4AF37;
+            padding: 10px 20px;
+            text-decoration: none;
+            color: black;
+            border-radius: 10px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px,1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .card {
+            background: rgba(255,255,255,0.9);
+            color: black;
+            border-radius: 20px;
+            padding: 15px;
+            box-shadow: 0 0 15px rgba(212,175,55,0.3);
+        }
+
+        .card img {
+            width: 100%;
+            height: 220px;
+            object-fit: contain;
+            transition: 0.3s;
+        }
+
+        .card img:hover {
+            transform: scale(1.05);
+        }
+
+        .badge {
+            color: #D4AF37;
+            font-weight: bold;
+        }
+
+        .btn {
+            padding: 8px 12px;
+            border-radius: 8px;
+            text-decoration: none;
+            margin-right: 5px;
+        }
+
+        .edit {
+            background: #D4AF37;
+            color: black;
+        }
+
+        .delete {
+            background: #8B0000;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+<header>🥂 The Premium Spirit</header>
+
+<div class="container">
+    <a href="/append" class="btn-add">+ เพิ่มสินค้า</a>
+
+    <div class="grid">
+        {% for l in liquors %}
+        <div class="card">
+            <img src="{{l[3]}}">
+
+            <h3>{{l[1]}}</h3>
+            <p class="badge">#{{l[8]}}</p>
+
+            <p>💰 ราคา: {{l[2]}} บาท</p>
+            <p>📦 สต็อก: {{l[4]}}</p>
+            <p>🍶 ปริมาณแอลกอฮอล์: {{l[6]}}% | {{l[7]}} ml</p>
+
+            <a href="/edit/{{l[0]}}" class="btn edit">แก้ไข</a>
+            <a href="/delete/{{l[0]}}" class="btn delete">ลบ</a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+</body>
+</html>
